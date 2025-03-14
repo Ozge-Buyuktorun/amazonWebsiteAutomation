@@ -8,7 +8,7 @@ const config: PlaywrightTestConfig = {
   testDir: path.join(__dirname, "../src/tests"),
   timeout: 30000,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 4 : undefined,
   reporter: [
     ["line"],
     ["allure-playwright"],

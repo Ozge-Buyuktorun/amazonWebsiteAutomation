@@ -3,24 +3,32 @@ import LoginPage from "../pages/LoginPage";
 import logger from "@/utils/logger";
 
 let loginPage: LoginPage;
+const email = process.env.EMAIL!;
+const password = process.env.PASSWORD!;
+
+test.describe.configure({ mode: 'parallel' });
 test.describe("Amazon Login Test", () => {
-  test.beforeAll("Test Preparation", async ({ page }) => {
+  test.beforeEach("Test Preparation", async ({ page }) => {
     logger.info(`Running ${test.info().title}`);
     loginPage = new LoginPage(page);
     await loginPage.navigateToLoginPage();
   });
 
-  test.afterAll('Teardown', async ({ page }) => {
+  test.afterEach('Teardown', async ({ page }) => {
     await page.close();
-    // ...
   });
-  test("T1-Should navigate to login page and check email input visibility", async () => {
+  test("T1-Loading Home Page and Email Field Control", async () => {
+    await loginPage.navigateToLoginPage();
     await loginPage.expectToBeVisible(loginPage.emailInput);
   });
 
-  test("T2-Should fill email and click continue", async () => {
-    await loginPage.navigateToLoginPage();
-    await loginPage.enterEmail(process.env.EMAIL!);
-    await loginPage.enterPassword(process.env.PASSWORD!);
+  test("T2-Control email and Password Field", async () => {
+    await loginPage.enterEmail(email);
+    await loginPage.enterPassword(password);
   });
+
+  test("T3-Direct Login", async () => {
+    await loginPage.login(email,password);
+  });
+
 });

@@ -105,7 +105,7 @@ export default class BasePage {
    */
   async waitForPageLoad(): Promise<void> {
     logger.info("Waiting for page to load");
-    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForLoadState("domcontentloaded");
   }
 
   /**
