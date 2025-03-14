@@ -18,7 +18,7 @@ export default class HomePage extends BasePage {
   constructor(page: Page) {
     super(page);
     
-    // Locator tanımlamaları
+    //Definition of Locators
     this.searchBox = this.page.locator('#twotabsearchtextbox');
     this.searchButton = this.page.locator('#nav-search-submit-button');
     this.accountList = this.page.locator('#nav-link-accountList');
@@ -32,7 +32,7 @@ export default class HomePage extends BasePage {
   }
   
   /**
-   * Ana sayfaya git
+   * Go to the home page
    */
   async navigateToHomePage(): Promise<void> {
     logger.info('Navigating to home page');
@@ -40,8 +40,8 @@ export default class HomePage extends BasePage {
   }
   
   /**
-   * Arama yap
-   * @param searchTerm Arama terimi
+   * Search a term.
+   * @param searchTerm Search Parameters.
    */
   async search(searchTerm: string): Promise<void> {
     logger.info(`Searching for: ${searchTerm}`);

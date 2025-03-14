@@ -16,7 +16,7 @@ export default class LoginPage extends BasePage {
   constructor(page: Page) {
     super(page);
     
-    // Locator tanımlamaları
+    // Definition of Some Locators
     this.emailInput = this.page.locator('#ap_email');
     this.continueButton = this.page.locator('//input[@id="continue"]');
     this.passwordInput = this.page.locator('#ap_password');
@@ -28,7 +28,7 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Login sayfasına git
+   * Go to login page
    */
   async navigateToLoginPage(): Promise<void> {
     logger.info('Navigating to login page');
@@ -36,8 +36,8 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Email girin ve devam edin
-   * @param email Kullanıcı email adresi
+   * Enter email field with any email
+   * @param email User email adress
    */
   async enterEmail(email: string): Promise<void> {
     logger.info(`Entering email: ${email}`);
@@ -48,9 +48,9 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Şifre girin ve oturum açın
-   * @param password Kullanıcı şifresi
-   * @param keepSignedIn Oturumu açık tut seçeneği (opsiyonel)
+   * Fill in the password and continue with this function
+   * @param password User Password
+   * @param keepSignedIn Keep Sing in (optional)
    */
   async enterPassword(password: string, keepSignedIn: boolean = false): Promise<void> {
     logger.info(`Entering password and signing in`);
@@ -65,10 +65,10 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Amazon hesabına giriş yap
-   * @param email Kullanıcı email adresi
-   * @param password Kullanıcı şifresi
-   * @param keepSignedIn Oturumu açık tut seçeneği (opsiyonel)
+   * Login to the amazon website with your email
+   * @param email User Email
+   * @param password User Password 
+   * @param keepSignedIn Keep sign in (optional)
    */
   async login(email: string, password: string, keepSignedIn: boolean = false): Promise<void> {
     logger.info(`Logging in with email: ${email}`);
@@ -80,7 +80,7 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Şifremi unuttum bağlantısına tıkla
+   * Click the link about forget password
    */
   async clickForgotPassword(): Promise<void> {
     logger.info('Clicking on forgot password link');
@@ -88,7 +88,7 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Yeni hesap oluştur butonuna tıkla
+   * Click the new account creating button
    */
   async clickCreateAccount(): Promise<void> {
     logger.info('Clicking on create account button');
@@ -96,8 +96,8 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Hata mesajı var mı kontrol et
-   * @returns Hata mesajı varsa true, yoksa false
+   * Control the error message
+   * @returns Return a false or true boolean value
    */
   async hasError(): Promise<boolean> {
     logger.info('Checking if error message is present');
@@ -105,8 +105,8 @@ export default class LoginPage extends BasePage {
   }
   
   /**
-   * Hata mesajını getir
-   * @returns Hata mesajı metni
+   * Give the error message
+   * @returns Index and details of error message
    */
   async getErrorMessage(): Promise<string | null> {
     if (await this.hasError()) {
