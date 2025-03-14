@@ -106,7 +106,7 @@ export default class LoginPage extends BasePage {
   
   /**
    * Give the error message
-   * @returns Index and details of error message
+   * @returns Index and details of rror message
    */
   async getErrorMessage(): Promise<string | null> {
     if (await this.hasError()) {
