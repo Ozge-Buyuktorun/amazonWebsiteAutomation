@@ -1,5 +1,8 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
+import * as dotenv from 'dotenv';
+
+dotenv.config({ path: 'config/.env' });
 
 const config: PlaywrightTestConfig = {
   testDir: path.join(__dirname, "../src/tests"),

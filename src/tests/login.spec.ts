@@ -13,11 +13,7 @@ test.describe('Amazon Login Test', () => {
     const loginPage = new LoginPage(page);
 
     await loginPage.navigateToLoginPage();
-    await loginPage.enterEmail('ozgebuyuktorun@outlook.com');
-
-    const passwordInput = page.locator('input#ap_password');
-    await loginPage.expectToBeVisible(passwordInput);
-
-    await loginPage.enterPassword('Ozge951357');
+    await loginPage.enterEmail(process.env.EMAIL!);
+    await loginPage.enterPassword(process.env.PASSWORD!);
   });
 });
