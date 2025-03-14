@@ -20,7 +20,7 @@ export default class HomePage extends BasePage {
     
     //Definition of Locators
     this.searchBox = this.page.locator('#twotabsearchtextbox');
-    this.searchButton = this.page.locator('#nav-search-submit-button');
+    this.searchButton = this.page.locator('#nav-search-submit-button'); //this.page.getByRole('button', { name: 'Go', exact: true }).click();
     this.accountList = this.page.locator('#nav-link-accountList');
     this.cartIcon = this.page.locator('#nav-cart');
     this.logo = this.page.locator('#nav-logo');
@@ -45,8 +45,8 @@ export default class HomePage extends BasePage {
    */
   async search(searchTerm: string): Promise<void> {
     logger.info(`Searching for: ${searchTerm}`);
+    await this.click(this.searchBox);
     await this.fill(this.searchBox, searchTerm);
-    await this.click(this.searchButton);
     await this.waitForPageLoad();
   }
   

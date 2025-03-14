@@ -25,6 +25,7 @@ Welcome to the **Amazon UI Automation Framework**, a powerful end-to-end testing
  - ```npx playwright test --reporter=allure-playwright```
 #### 2️⃣ Serve the report in your browser:
  - ```npx allure serve```
+ -  ![Sample Allure Report](./src/assets/SampleAllureReport.png)
 
 ### 🔐 Environment Configuration
  - Base URL: https://www.amazon.com

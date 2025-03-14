@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: 'config/.env' });
+
 import { test } from "@playwright/test";
 import LoginPage from "../pages/LoginPage";
 import logger from "@/utils/logger";

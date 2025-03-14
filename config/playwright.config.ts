@@ -1,14 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: 'config/.env' });
+
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
-import * as dotenv from 'dotenv';
-
-dotenv.config({ path: 'config/.env' });
 
 const config: PlaywrightTestConfig = {
   testDir: path.join(__dirname, "../src/tests"),
   timeout: 30000,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
+  outputDir: path.join(__dirname, "../config/playwright-report"),
   reporter: [
     ["line"],
     ["allure-playwright"],
@@ -46,7 +47,7 @@ const config: PlaywrightTestConfig = {
     },
     */
   ],
-  outputDir: path.join(__dirname, "../test-results"),
+
 };
 
 export default config;
