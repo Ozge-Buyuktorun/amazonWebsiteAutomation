@@ -1,7 +1,7 @@
-import winston from 'winston';
-import path from 'path';
+import winston from "winston";
+import path from "path";
 
-// Log düzeylerini ve renklerini tanımlama
+// Log levels with priorities
 const levels = {
   error: 0,
   warn: 1,
@@ -10,44 +10,63 @@ const levels = {
   debug: 4,
 };
 
-const colors = {
-  error: 'red',
-  warn: 'yellow',
-  info: 'green',
-  http: 'magenta',
-  debug: 'blue',
+// Emojis per log level
+const levelIcons: Record<string, string> = {
+  error: "❌",
+  warn: "⚠️",
+  info: "ℹ️",
+  http: "🌐",
+  debug: "🐛",
 };
 
-// Winston'a renkleri tanıtma
+// Colors for terminal
+const colors = {
+  error: "red",
+  warn: "yellow",
+  info: "green",
+  http: "magenta",
+  debug: "blue",
+};
+
 winston.addColors(colors);
 
-// Loglama formatını tanımlama
+// Custom log format
+const customFormat = winston.format.printf((info) => {
+  const timestampStr = info.timestamp as string;
+  const dateObj = new Date(timestampStr);
+  const date = dateObj.toISOString().split("T")[0];
+  const time = dateObj
+    .toTimeString()
+    .split(" ")[0]
+    .concat(`:${dateObj.getMilliseconds().toString().padStart(4, "0")}`);
+
+  const icon = levelIcons[info.level] || "";
+  const levelUpper = info.level.toUpperCase();
+  return `[Date:${date}]-[Hour:${time}]-[${icon}] [${levelUpper} Level: ${info.message}]`;
+});
+
+// Combined format: timestamp, colorize, customFormat
 const format = winston.format.combine(
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+  winston.format.timestamp(),
   winston.format.colorize({ all: true }),
-  winston.format.printf(
-    (info) => `${info.timestamp} ${info.level}: ${info.message}`
-  )
+  customFormat
 );
 
-// Transportları tanımlama
+// Transports (Console and File)
 const transports = [
-  // Konsola loglama
   new winston.transports.Console(),
-  // Dosyaya loglama (tüm loglar)
   new winston.transports.File({
-    filename: path.join(__dirname, '../../logs/all.log'),
+    filename: path.join(__dirname, "../../logs/all.log"),
   }),
-  // Dosyaya loglama (sadece hatalar)
   new winston.transports.File({
-    filename: path.join(__dirname, '../../logs/error.log'),
-    level: 'error',
+    filename: path.join(__dirname, "../../logs/error.log"),
+    level: "error",
   }),
 ];
 
-// Logger oluşturma
+// Create logger
 const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || "info",
   levels,
   format,
   transports,
