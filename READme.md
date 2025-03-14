@@ -1,4 +1,4 @@
-# 🌐 Amazon UI Automation Framework 🚀
+## 🌐 Amazon UI Automation Framework 🚀
 
 Welcome to the **Amazon UI Automation Framework**, a powerful end-to-end testing suite built with **Playwright**, **TypeScript**, and **Allure Reports** — tailored for automating and testing various scenarios on [Amazon.com](https://www.amazon.com) 🛒.
 
