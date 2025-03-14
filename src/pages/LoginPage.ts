@@ -18,7 +18,7 @@ export default class LoginPage extends BasePage {
     
     // Locator tanımlamaları
     this.emailInput = this.page.locator('#ap_email');
-    this.continueButton = this.page.locator('#continue');
+    this.continueButton = this.page.locator('//input[@id="continue"]');
     this.passwordInput = this.page.locator('#ap_password');
     this.signInButton = this.page.locator('#signInSubmit');
     this.errorMessage = this.page.locator('.a-alert-content');
@@ -41,6 +41,8 @@ export default class LoginPage extends BasePage {
    */
   async enterEmail(email: string): Promise<void> {
     logger.info(`Entering email: ${email}`);
+
+    await this.expectToBeVisible(this.emailInput);
     await this.fill(this.emailInput, email);
     await this.click(this.continueButton);
   }
@@ -52,6 +54,7 @@ export default class LoginPage extends BasePage {
    */
   async enterPassword(password: string, keepSignedIn: boolean = false): Promise<void> {
     logger.info(`Entering password and signing in`);
+    await this.expectToBeVisible(this.passwordInput);
     await this.fill(this.passwordInput, password);
     
     if (keepSignedIn) {
@@ -73,7 +76,6 @@ export default class LoginPage extends BasePage {
     await this.enterEmail(email);
     await this.enterPassword(password, keepSignedIn);
     
-    // Login sonrası ana sayfanın yüklenmesini bekle
     await this.waitForPageLoad();
   }
   

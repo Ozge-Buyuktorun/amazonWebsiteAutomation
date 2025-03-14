@@ -1,2 +1,5 @@
 package-lock.json
 node_modules
+allure-results
+logs
+config/playwright-report

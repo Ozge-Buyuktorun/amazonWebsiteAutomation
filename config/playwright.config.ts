@@ -1,33 +1,34 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
-import path from 'path';
+import { PlaywrightTestConfig, devices } from "@playwright/test";
+import path from "path";
 
 const config: PlaywrightTestConfig = {
-  testDir: path.join(__dirname, '../src/tests'),
+  testDir: path.join(__dirname, "../src/tests"),
   timeout: 30000,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-    ['line'],
-    ['allure-playwright'],
-    ['html', { outputFolder: 'playwright-report' }]
+    ["line"],
+    ["allure-playwright"],
+    ["html", { outputFolder: "playwright-report" }],
   ],
   use: {
-    baseURL: 'https://www.amazon.com',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'on-first-retry',
-    headless: process.env.HEADLESS === 'true',
+    baseURL: "https://www.amazon.com",
+    trace: "on-first-retry",
+    screenshot: "only-on-failure",
+    video: "on-first-retry",
+    headless: process.env.HEADLESS === "false",
   },
   projects: [
     {
-      name: 'chromium',
+      name: "chromium",
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices["Desktop Chrome"],
         launchOptions: {
-          args: ['--disable-gpu', '--disable-dev-shm-usage', '--no-sandbox']
-        }
+          args: ["--disable-gpu", "--disable-dev-shm-usage", "--no-sandbox"],
+        },
       },
     },
+    /*
     {
       name: 'firefox',
       use: {
@@ -40,8 +41,9 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Safari'],
       },
     },
+    */
   ],
-  outputDir: path.join(__dirname, '../test-results'),
+  outputDir: path.join(__dirname, "../test-results"),
 };
 
 export default config;
