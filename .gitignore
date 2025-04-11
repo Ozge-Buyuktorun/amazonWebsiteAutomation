@@ -3,4 +3,3 @@ node_modules
 allure-results
 logs
 config/playwright-report
-config/.env

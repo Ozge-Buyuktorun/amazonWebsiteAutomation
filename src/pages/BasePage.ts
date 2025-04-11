@@ -11,8 +11,8 @@ export default class BasePage {
   }
 
   /**
-   * Belirtilen URL'e gider
-   * @param url Gidilecek URL
+   * 
+   * @param url We will go the the this url.
    */
   async navigate(url: string = ""): Promise<void> {
     try {
@@ -26,8 +26,8 @@ export default class BasePage {
   }
 
   /**
-   * Elementte click işlemi yapar
-   * @param locator Tıklanacak element
+   *  click process to the element
+   * @param locator Clickable element locator.
    */
   async click(locator: Locator): Promise<void> {
     logger.info(`Clicking on element: ${locator}`);
@@ -35,9 +35,9 @@ export default class BasePage {
   }
 
   /**
-   * Elemente metin yazar
-   * @param locator Yazılacak element
-   * @param text Yazılacak metin
+   * Fill the some text in to the locator field.
+   * @param locator Write into this element.
+   * @param text Text to write.
    */
   async fill(locator: Locator, text: string): Promise<void> {
     logger.info(`Filling text in element: ${locator}`);
@@ -45,9 +45,9 @@ export default class BasePage {
   }
 
   /**
-   * Elementte metin bulunduğunu doğrular
-   * @param locator Kontrol edilecek element
-   * @param text Beklenen metin
+   * Verify to the some text in to a element.
+   * @param locator A element to be controlled.
+   * @param text Expected Text ( String. )
    */
   async expectTextToBePresent(locator: Locator, text: string): Promise<void> {
     logger.info(
@@ -57,8 +57,8 @@ export default class BasePage {
   }
 
   /**
-   * Elementin görünür olduğunu doğrular
-   * @param locator Kontrol edilecek element
+   * Check if the element is visible or not.
+   * @param locator Will be controlled this element.
    */
   async expectToBeVisible(locator: Locator): Promise<void> {
     logger.info(`Expecting element to be visible: ${locator}`);
@@ -66,8 +66,8 @@ export default class BasePage {
   }
 
   /**
-   * Elementin görünür olmadığını doğrular
-   * @param locator Kontrol edilecek element
+   * Check it the element to be hidden or not
+   * @param locator Will be controlled this element.
    */
   async expectToBeHidden(locator: Locator): Promise<void> {
     logger.info(`Expecting element to be hidden: ${locator}`);
@@ -75,9 +75,9 @@ export default class BasePage {
   }
 
   /**
-   * Element görünür olana kadar bekler
-   * @param locator Beklenecek element
-   * @param timeout Beklenecek süre (ms)
+   * Wait until element is visible
+  * @param locator Element to wait for
+  * @param timeout Time to wait (ms)
    */
   async waitForElementToBeVisible(
     locator: Locator,
@@ -88,9 +88,9 @@ export default class BasePage {
   }
 
   /**
-   * Element kaybolana kadar bekler
-   * @param locator Beklenecek element
-   * @param timeout Beklenecek süre (ms)
+   * Wait until element disappears
+   * @param locator Element to wait for
+   * @param timeout Time to wait (ms)
    */
   async waitForElementToBeHidden(
     locator: Locator,
@@ -101,7 +101,7 @@ export default class BasePage {
   }
 
   /**
-   * Sayfanın yüklenmesini bekler
+   * Waiting to the load the page.
    */
   async waitForPageLoad(): Promise<void> {
     logger.info("Waiting for page to load");
@@ -109,8 +109,8 @@ export default class BasePage {
   }
 
   /**
-   * Bir elementi hover eder
-   * @param locator Hover edilecek element
+   * Hover over an element
+   * @param locator element to be hovered.
    */
   async hover(locator: Locator): Promise<void> {
     logger.info(`Hovering over element: ${locator}`);
@@ -118,8 +118,8 @@ export default class BasePage {
   }
 
   /**
-   * Ekran görüntüsü alır
-   * @param name Dosya adı
+   * Take a screenshot with using this asynch. function.
+   * @param name File name.
    */
   async takeScreenshot(name: string): Promise<void> {
     logger.info(`Taking screenshot: ${name}`);
@@ -130,9 +130,9 @@ export default class BasePage {
   }
 
   /**
-   * Dropdown'dan değer seçer
-   * @param locator Dropdown elementi
-   * @param value Seçilecek değer
+   * Selects value from dropdown
+   * @param locator Dropdown element
+   * @param value Value to select.
    */
   async selectOption(locator: Locator, value: string): Promise<void> {
     logger.info(`Selecting option "${value}" from dropdown: ${locator}`);
@@ -140,9 +140,9 @@ export default class BasePage {
   }
 
   /**
-   * JavaScript kodu çalıştırır
-   * @param script Çalıştırılacak JavaScript kodu
-   * @returns JavaScript kodunun dönüş değeri
+   * Run the JavaScript Code.
+   * @param script Script to be runned with JS.
+   * @returns Return Value
    */
   async executeScript<T>(script: string): Promise<T> {
     logger.info(`Executing script: ${script}`);
